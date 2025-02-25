@@ -1,0 +1,15 @@
+{% extends 'core/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <h2>新建任务 - {{ project.name }}</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <!-- 手动加多文件上传字段 -->
+        <div class="form-group">
+            <label for="id_files">上传文件（可多选）</label>
+            <input type="file" name="files" id="id_files" multiple class="form-control-file">
+        </div>
+        <button type="submit" class="btn btn-primary">创建</button>
+    </form>
+{% endblock %}
