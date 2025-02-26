@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}个人中心{% endblock %}
+{% block content %}
+    <section class="profile-section">
+        <h2>个人中心</h2>
+        <div class="profile-card">
+            <img src="{% if user.avatar %}{{ user.avatar.url }}{% else %}{% static 'images/default.jpg' %}{% endif %}" alt="头像" class="profile-avatar">
+            <div class="profile-info">
+                <p><strong>用户名:</strong> {{ user.username }}</p>
+                <p><strong>手机号:</strong> {{ user.phone }}</p>
+                <p><strong>注册时间:</strong> {{ user.created_at }}</p>
+                <p><strong>地址:</strong> {{ user.address|default:'未设置' }}</p>
+            </div>
+            <a href="#" class="btn btn-edit">编辑资料</a>
+        </div>
+    </section>
+{% endblock %}

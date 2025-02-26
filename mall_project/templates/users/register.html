@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %}注册{% endblock %}
+{% block content %}
+    <section class="auth-section">
+        <h2>注册账号</h2>
+        <form method="post" class="auth-form" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="username">用户名</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">密码</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">手机号</label>
+                <input type="text" id="phone" name="phone" required>
+            </div>
+            <div class="form-group">
+                <label for="avatar">上传头像</label>
+                <input type="file" id="avatar" name="avatar">
+            </div>
+            <button type="submit" class="btn btn-auth">注册</button>
+        </form>
+        <p>已有账号？<a href="{% url 'users:login' %}">去登录</a></p>
+    </section>
+{% endblock %}

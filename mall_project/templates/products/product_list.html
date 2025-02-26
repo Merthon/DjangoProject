@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %}商品列表{% endblock %}
+{% block content %}
+    <section class="search-bar">
+        <form method="get" action="{% url 'products:search' %}">
+            <input type="text" name="q" placeholder="搜索商品..." value="{{ query|default:'' }}">
+            <button type="submit" class="search-btn">🔍</button>
+        </form>
+        {% if query %}<p class="search-info">搜索结果: {{ query }}</p>{% endif %}
+        {% if recommend %}<p class="search-info">为你推荐</p>{% endif %}
+    </section>
+    <section class="product-grid">
+        {% for product in products %}
+            <div class="product-card">
+                <img src="{{ product.image.url|default:'/static/images/default.jpg' }}" alt="{{ product.name }}" class="product-img">
+                <div class="product-info">
+                    <h3>{{ product.name }}</h3>
+                    <p class="price">¥{{ product.price }}</p>
+                    <p class="description">{{ product.description|truncatewords:10 }}</p>
+                    <div class="product-actions">
+                        <a href="{% url 'products:product_detail' product.id %}" class="btn">查看详情</a>
+                        <a href="{% url 'orders:add_to_cart' product.id %}" class="btn btn-cart">加入购物车</a>
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <p class="no-products">啥商品都没有！</p>
+        {% endfor %}
+    </section>
+{% endblock %}

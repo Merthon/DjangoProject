@@ -1,0 +1,51 @@
+<!-- templates/base.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>商城 - {% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="{% static 'js/script.js' %}" defer></script>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <header class="navbar">
+        <div class="container">
+            <h1 class="logo"><a href="{% url 'products:product_list' %}">商城</a></h1>
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="{% url 'products:product_list' %}">首页</a></li>
+                    {% if user.is_authenticated %}
+                        <li><a href="{% url 'orders:cart' %}">购物车<span class="cart-count">{{ request.session.cart|length|default:0 }}</span></a></li>
+                        <li><a href="{% url 'users:profile' %}">个人中心</a></li>
+                        <li><a href="{% url 'users:logout' %}">退出</a></li>
+                    {% else %}
+                        <li><a href="{% url 'users:login' %}">登录</a></li>
+                        <li><a href="{% url 'users:register' %}">注册</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+            <div class="hamburger">☰</div>
+        </div>
+    </header>
+
+    <!-- 主内容 -->
+    <main class="main-content">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-links">
+                <a href="#">关于我们</a>
+                <a href="#">联系客服</a>
+                <a href="#">常见问题</a>
+            </div>
+            <p>© 2025 电商平台</p>
+        </div>
+    </footer>
+</body>
+</html>
