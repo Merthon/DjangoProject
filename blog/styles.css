@@ -1,0 +1,80 @@
+/* 自定义样式以覆盖或增强 Bootstrap */
+body {
+    background-color: #f5f5f5;
+    font-family: 'Arial', sans-serif;
+}
+
+.avatar {
+    object-fit: cover;
+}
+
+.social-icon {
+    font-size: 1.5rem;
+    transition: color 0.3s ease;
+}
+
+.social-icon:hover {
+    color: #333;
+}
+
+.list-group-item {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.list-group-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.post-title {
+    text-decoration: none;
+    color: #007bff;
+    font-size: 1.2rem;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.post-title:hover {
+    color: #0056b3;
+}
+
+.post-date {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+/* 确保容器居中和适配 */
+.container {
+    max-width: 800px;
+}
+
+/* 彻底移除导航栏的框和背景，确保颜色与页面主体一致 */
+.navbar {
+    padding: 0.5rem 1rem;
+    border: none !important; /* 强制移除边框 */
+    box-shadow: none !important; /* 强制移除阴影 */
+    background-color: #f5f5f5 !important; /* 与页面主体颜色一致 */
+}
+
+/* 移除导航栏折叠菜单的默认样式 */
+.navbar-toggler {
+    border: none !important;
+    box-shadow: none !important;
+    background-color: transparent !important;
+}
+
+/* 移除导航栏链接的默认边框和背景 */
+.navbar-nav .nav-link {
+    background-color: transparent !important;
+    border: none !important;
+}
+
+/* 移除文章列表的框和阴影 */
+.list-group {
+    border: none !important; /* 强制移除列表的边框 */
+}
+
+.list-group-item {
+    border: none !important; /* 强制移除每个列表项的边框 */
+    background-color: transparent !important; /* 确保背景透明 */
+}
