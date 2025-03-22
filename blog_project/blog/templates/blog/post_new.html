@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Write a New Post</title>
+</head>
+<body>
+    <h1>New Post</h1>
+    <form method="post">
+        {% csrf_token %}  <!-- Django安全要求 -->
+        {{ form.as_p }}   <!-- 表单字段自动渲染成段落 -->
+        <button type="submit">Publish</button>
+    </form>
+    <a href="{% url 'post_list' %}">Back to list</a>
+</body>
+</html>
