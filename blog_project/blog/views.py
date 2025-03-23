@@ -43,6 +43,30 @@ def post_new(request):
     return render(request, 'blog/post_new.html', {'form': form})
 
 @login_required
+def post_edit(request, post_id):
+    post = get_object_or_404(Post, id=post_id)
+    if post.author != request.user:  # 只能编辑自己的文章
+        return redirect('post_detail', post_id=post.id)
+    if request.method == 'POST':
+        form = PostForm(request.POST, instance=post)
+        if form.is_valid():
+            form.save()
+            return redirect('post_detail', post_id=post.id)
+    else:
+        form = PostForm(instance=post)
+    return render(request, 'blog/post_edit.html', {'form': form, 'post': post})
+
+@login_required
+def post_delete(request, post_id):
+    post = get_object_or_404(Post, id=post_id)
+    if post.author != request.user:  # 只能删除自己的文章
+        return redirect('post_detail', post_id=post.id)
+    if request.method == 'POST':  # 用POST确认删除
+        post.delete()
+        return redirect('post_list')
+    return render(request, 'blog/post_delete.html', {'post': post})
+
+@login_required
 def comment_new(request, post_id):
     post = get_object_or_404(Post, id=post_id)
     if request.method == 'POST':
