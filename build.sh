@@ -1,4 +1,5 @@
 #!/bin/bash
-pip install -r requirements.txt
-python manage.py collectstatic --noinput
-python manage.py migrate
+set -e  # 出错就退出
+pip3 install -r requirements.txt
+python3 manage.py collectstatic --noinput
+python3 manage.py migrate
