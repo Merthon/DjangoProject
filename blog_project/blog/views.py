@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from .models import Post
@@ -18,7 +18,7 @@ def post_detail(request, post_id):
     comment_form = CommentForm()
     if request.method == 'POST' and request.user.is_authenticated:
         comment_form = CommentForm(request.POST)
-        if form.is_valid():
+        if comment_form.is_valid():
             comment = comment_form.save(commit=False)
             comment.post = post
             comment.author = request.user
